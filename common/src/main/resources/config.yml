@@ -1,0 +1,85 @@
+expire-request: 40 # in seconds
+tp-wait-duration: 5 # in seconds
+
+titles: # in ticks (20 tick = 1s)
+  fade_in: 2
+  stay_duration: 40
+  fade_out: 2
+
+messages:
+  prefix: "<black>[ClickTPA]</black> "
+
+  chat:
+    hover_tpa: "<red>Click me to tpa</red>"
+    hover_tptoggle: "<red>Click me to toggle</red>"
+
+  click:
+    accept: "<green>[Accept]</green>"
+    deny: "<red>[Deny]</red>"
+
+  titles:
+    cancelled_tp:
+      - "<red>Cancelled tp</red>"
+      - "<red>Cancelled tp subtitle</red>"
+    teleport_started:
+      - "<green>Teleport started</green>"
+      - "<green>Teleport started subtitle</green>"
+    teleport_complete:
+      - "<green>Teleport completed</green>"
+      - "<green>Teleport completed subtitle</green>"
+
+  hover:
+    accept: "<green>Click to accept</green>"
+    deny: "<red>Click to deny</red>"
+
+  error:
+    teleport_self_fail: "<red>You cannot teleport to yourself.</red>"
+    no_player: "<red>Player not found.</red>"
+    target_offline: "<red><target> is offline</red>"
+    teleport_off: "<red><target> has teleport request disabled</red>"
+    no_request: "<red>You have no pending teleport requests.</red>"
+    already_requested: "<red>Request already sent</red>"
+    request_expired: "<red>The request sent to <target> has expired</red>"
+    interrupted: "<red>Teleport has been interrupted</red>"
+    player_moved: "<red><target> has moved before tp</red>"
+
+  generic:
+    request_sent: "<green>Teleport request sent to <aqua><target></aqua>.</green>"
+
+  command:
+    tpa:
+      message:
+        - "<gold><sender> has requested teleport to you</gold>"
+        - "<gold>Click <accept> to accept or <deny> to deny</gold>"
+        - "<gold>Expires after <expire></gold>"
+
+    tpahere:
+      message:
+        - "<gold><sender> has requested teleport to them</gold>"
+        - "<gold>Click <accept> to accept or <deny> to deny</gold>"
+        - "<gold>Expires after <expire></gold>"
+
+    tpacancel:
+      cancel_success: "<green>Your teleport request has been cancelled.</green>"
+
+    tpaccept:
+      accept_success: "<green>You accepted the teleport request from <aqua><target></aqua>.</green>"
+      accepted_by_target: "<green><target> accepted your teleport request.</green>"
+
+    tpdeny:
+      deny_success: "<red>You denied the teleport request from <aqua><target></aqua>.</red>"
+      denied_by_target: "<red><target> denied your teleport request.</red>"
+
+    tpo:
+      teleport_success: "<green>You teleported to <aqua><target></aqua>.</green>"
+
+    tpohere:
+      teleport_success: "<green>You teleported <aqua><target></aqua> to your location.</green>"
+
+    tptoggle:
+      toggled_on: "<green>Teleport requests are now <aqua>enabled</aqua>.</green>"
+      toggled_off: "<green>Teleport requests are now <red>disabled</red>.</green>"
+      toggled_error_teleporting: "<red><Cannot run /tptoggle during teleportation/red>"
+
+    reload:
+      reload_success: "<green>Plugin configuration reloaded successfully.</green>"
