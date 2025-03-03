@@ -1,6 +1,6 @@
 package me.vaan.clickTpa.common.file;
 
-import me.vaan.clickTpa.common.NamedAudience;
+import me.vaan.clickTpa.common.TpaUser;
 import me.vaan.clickTpa.common.enums.TeleportType;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
@@ -38,7 +38,7 @@ public class Message {
         player.sendMessage(prefix.append(componentMessage));
     }
 
-    public static void sendTpRequest(TeleportType type, NamedAudience player, NamedAudience target) {
+    public static void sendTpRequest(TeleportType type, TpaUser player, TpaUser target) {
         var cs = Config.getInstance();
 
         Component acceptHoverText = cs.getComponent("messages.hover.accept");
@@ -73,7 +73,7 @@ public class Message {
         sendMessage(player.audience(), "generic.request_sent", target.name());
     }
 
-    public static void sendMoved(NamedAudience player, NamedAudience target, TeleportType type) {
+    public static void sendMoved(TpaUser player, TpaUser target, TeleportType type) {
         switch (type) {
             case TPA -> {
                 sendTitle(target.audience(), "titles.cancelled_tp");
