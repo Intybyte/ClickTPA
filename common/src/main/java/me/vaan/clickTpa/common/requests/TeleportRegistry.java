@@ -1,5 +1,6 @@
 package me.vaan.clickTpa.common.requests;
 
+import me.vaan.clickTpa.common.ClickTpaPlugin;
 import me.vaan.clickTpa.common.DefaultMap;
 import me.vaan.clickTpa.common.enums.TeleportMode;
 import me.vaan.clickTpa.common.enums.TeleportType;
@@ -18,5 +19,10 @@ public class TeleportRegistry {
         modes.remove(p);
         tpaMap.remove(p);
         listenMovement.remove(p);
+    }
+
+    public void removeTpRequest(String senderName, String targetName) {
+        Map<String, TeleportType> tpList = ClickTpaPlugin.registry.tpaMap.get(senderName);
+        tpList.remove(targetName);
     }
 }

@@ -1,4 +1,4 @@
-package me.vaan.clickTpa.common.commands.interfaces;
+package me.vaan.clickTpa.common.commands;
 
 import me.vaan.clickTpa.common.ClickTpaPlugin;
 import me.vaan.clickTpa.common.TpaUser;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-public interface CommonCommandTpaccept {
+public interface CommonCommandTpDeny {
     default void runCommand(@NotNull TpaUser p, @Nullable TpaUser target) {
         Map<String, TeleportType> tpList = ClickTpaPlugin.registry.tpaMap.get(p.name());
         if (tpList.isEmpty()) {
@@ -28,17 +28,13 @@ public interface CommonCommandTpaccept {
         }
 
 
-        TeleportType tpType = tpList.get(target.name());
-        if (tpType == null) {
-            Message.sendMessage(p.audience(), "error.no_request");
-            return;
+        if (target.isOnline()) {
+            Message.sendMessage(target.audience(), "command.tpdeny.denied_by_target", p.name());
+            Message.sendMessage(p.audience(), "command.tpdeny.deny_success", target.name());
+        } else {
+            Message.sendMessage(p.audience(), "error.target_offline", target.name());
         }
 
-        Message.sendMessage(p.audience(), "command.tpaccept.accept_success", target.name());
-        Message.sendMessage(target.audience(), "command.tpaccept.accepted_by_target", p.name());
-
-        success(tpType, p, target);
+        tpList.remove(target.name());
     }
-
-    void success(TeleportType type, TpaUser p, TpaUser target);
 }

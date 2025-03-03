@@ -1,4 +1,4 @@
-package me.vaan.clickTpa.common.commands.interfaces;
+package me.vaan.clickTpa.common.commands;
 
 import me.vaan.clickTpa.common.TpaUser;
 import me.vaan.clickTpa.common.enums.TeleportType;
