@@ -1,7 +1,9 @@
 expire-request: 40 # in seconds
 tp-wait-duration: 5 # in seconds
+click-user-renderer: true
 
 titles: # in ticks (20 tick = 1s)
+  enabled: true
   fade_in: 2
   stay_duration: 40
   fade_out: 2

@@ -65,6 +65,10 @@ public class Config {
         return (Integer) configMap.get(key);
     }
 
+    public boolean getBool(String key) {
+        return (Boolean) configMap.get(key);
+    }
+
     public Component getComponent(String key) {
         return mm.deserialize(getString(key));
     }

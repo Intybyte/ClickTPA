@@ -12,7 +12,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.kyori.adventure.title.Title;
 
 import java.time.Duration;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Message {
@@ -90,9 +90,13 @@ public class Message {
 
     public static void sendTitle(Audience player, String key) {
         var cs = Config.getInstance();
+        if (!cs.getBool("titles.enabled")) {
+            return;
+        }
+
         var mm = MiniMessage.miniMessage();
 
-        List<Component> cmp = new LinkedList<>();
+        List<Component> cmp = new ArrayList<>();
         for (String line : cs.getSList("messages." + key)) {
             cmp.add(mm.deserialize(line));
         }
