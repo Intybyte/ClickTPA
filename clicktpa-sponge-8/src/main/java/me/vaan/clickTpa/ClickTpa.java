@@ -32,13 +32,27 @@ public class ClickTpa implements ClickTpaPlugin {
     private Path configDir;
     private Path configFile = Paths.get(configDir + "/config.yml");
 
-    private static PluginContainer container;
-    private static Logger logger;
+    private final PluginContainer container;
+    private final Logger logger;
+
+    private static ClickTpa instance = null;
 
     @Inject
     ClickTpa(final PluginContainer container, Logger logger) {
-        ClickTpa.container = container;
-        ClickTpa.logger = logger;
+        this.container = container;
+        this.logger = logger;
+
+        if (instance == null) {
+            instance = this;
+        }
+    }
+
+    public static ClickTpa getInstance() {
+        return instance;
+    }
+
+    public PluginContainer container() {
+        return container;
     }
 
     @Listener
@@ -47,10 +61,6 @@ public class ClickTpa implements ClickTpaPlugin {
         Config.init(this);
         logger.info("Constructing clicktpa-sponge-8");
         Sponge.eventManager().registerListeners(container, new PlayerListener());
-    }
-
-    public static Logger logger() {
-        return logger;
     }
 
     @Override
