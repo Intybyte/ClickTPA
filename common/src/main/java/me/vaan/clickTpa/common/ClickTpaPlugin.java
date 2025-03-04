@@ -7,5 +7,10 @@ import java.io.File;
 public interface ClickTpaPlugin {
     TeleportRegistry registry = new TeleportRegistry();
 
-    File getDataFolder();
+    File dataFolder();
+    void loadDefaultConfig();
+
+    default File configFile() {
+        return new File(dataFolder(), "config.yml");
+    }
 }

@@ -22,9 +22,10 @@ public class Config {
     private final Map<String, Object> configMap = new HashMap<>();
     private static final MiniMessage mm = MiniMessage.miniMessage();
 
-    public static void init(File config, ClickTpaPlugin plugin) {
+    public static void init(ClickTpaPlugin plugin) {
         Config.plugin = plugin;
-        instance = new Config(config);
+        plugin.loadDefaultConfig();
+        instance = new Config(plugin.configFile());
     }
 
     private Config(File config) {
@@ -40,7 +41,7 @@ public class Config {
 
     // Method to reload the configuration
     public void reloadConfig() {
-        try (FileInputStream fis = new FileInputStream(new File(plugin.getDataFolder(), "config.yml"))) {
+        try (FileInputStream fis = new FileInputStream(plugin.configFile())) {
             Yaml yaml = new Yaml();
             configMap.clear();  // Clear current map and reload new data
 
