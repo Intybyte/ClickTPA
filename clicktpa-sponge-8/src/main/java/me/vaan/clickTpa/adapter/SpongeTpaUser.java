@@ -48,7 +48,7 @@ public class SpongeTpaUser implements TpaUser {
                 Message.sendTitle(target.audience(), "titles.teleport_complete");
 
 
-                rotation = targetPlayer.rotation();
+                rotation = user.rotation();
                 targetPlayer.setLocation(user.serverLocation());
                 targetPlayer.setRotation(rotation);
 
@@ -57,7 +57,7 @@ public class SpongeTpaUser implements TpaUser {
             case TPAHERE:
                 Message.sendTitle(user, "titles.teleport_complete");
 
-                rotation = user.rotation();
+                rotation = targetPlayer.rotation();
                 user.setLocation(targetPlayer.serverLocation());
                 user.setRotation(rotation);
 
