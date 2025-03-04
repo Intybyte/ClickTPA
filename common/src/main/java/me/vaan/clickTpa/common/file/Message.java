@@ -119,9 +119,9 @@ public class Message {
         var times = Title.Times.times(TICK.multipliedBy(fadeIn), TICK.multipliedBy(stayDuration), TICK.multipliedBy(fadeOut));
         Title title;
         if (cmp.size() == 1) {
-            title = Title.title(cmp.getFirst(), Component.empty(), times);
+            title = Title.title(cmp.get(0), Component.empty(), times);
         } else {
-            title = Title.title(cmp.getFirst(), cmp.get(1), times);
+            title = Title.title(cmp.get(0), cmp.get(1), times);
         }
 
         player.showTitle(title);

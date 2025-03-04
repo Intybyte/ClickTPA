@@ -34,7 +34,7 @@ public class Config {
             Map<String, Object> map = yaml.load(fis);
             deepLoadKeys("", map);
         } catch (IOException e) {
-            plugin.getLogger().severe("Error loading config file: " + e.getMessage());
+            plugin.errorHandler().severe("Error loading config file: " + e.getMessage());
         }
     }
 
@@ -48,25 +48,34 @@ public class Config {
             deepLoadKeys("", map);
 
         } catch (IOException e) {
-            plugin.getLogger().severe("Error reloading config file: " + e.getMessage());
+            plugin.errorHandler().severe("Error reloading config file: " + e.getMessage());
         }
+    }
+
+    public Object get(String key) {
+        Object value = configMap.get(key);
+        if (value == null) {
+            throw new RuntimeException("Error: " + key + " not found.");
+        }
+
+        return value;
     }
 
     // Utility methods for fetching values from the map
     public String getString(String key) {
-        return (String) configMap.get(key);
+        return (String) get(key);
     }
 
     public List<String> getSList(String key) {
-        return (List<String>) configMap.get(key);
+        return (List<String>) get(key);
     }
 
     public int getInt(String key) {
-        return (Integer) configMap.get(key);
+        return (Integer) get(key);
     }
 
     public boolean getBool(String key) {
-        return (Boolean) configMap.get(key);
+        return (Boolean) get(key);
     }
 
     public Component getComponent(String key) {
