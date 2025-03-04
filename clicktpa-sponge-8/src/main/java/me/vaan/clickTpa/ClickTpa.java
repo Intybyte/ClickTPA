@@ -1,6 +1,7 @@
 package me.vaan.clickTpa;
 
 import com.google.inject.Inject;
+import me.vaan.clickTpa.commands.ClickTpaCommandManager;
 import me.vaan.clickTpa.common.ClickTpaPlugin;
 import me.vaan.clickTpa.common.file.Config;
 import me.vaan.clickTpa.listener.PlayerListener;
@@ -59,6 +60,7 @@ public class ClickTpa implements ClickTpaPlugin {
     public void loaded(final LoadedGameEvent event) {
         // Perform any one-time setup
         Config.init(this);
+        new ClickTpaCommandManager(container).registerCommands();
         logger.info("Constructing clicktpa-sponge-8");
         Sponge.eventManager().registerListeners(container, new PlayerListener());
     }

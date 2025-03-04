@@ -176,5 +176,12 @@
       <artifactId>common</artifactId>
       <version>1.0.0</version>
     </dependency>
+    <dependency>
+      <groupId>co.aikar</groupId>
+      <artifactId>acf-sponge10</artifactId>
+      <version>0.5.1-SNAPSHOT</version>
+      <scope>system</scope>
+      <systemPath>C:/Users/umbe5/IdeaProjects/clicktpa-project/libs/acf-sponge10.jar</systemPath>
+    </dependency>
   </dependencies>
 </project>
