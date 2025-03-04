@@ -34,7 +34,7 @@ public class Config {
             Map<String, Object> map = yaml.load(fis);
             deepLoadKeys("", map);
         } catch (IOException e) {
-            plugin.errorHandler().severe("Error loading config file: " + e.getMessage());
+            throw new RuntimeException("Error loading config file: " + e.getMessage());
         }
     }
 
@@ -48,7 +48,7 @@ public class Config {
             deepLoadKeys("", map);
 
         } catch (IOException e) {
-            plugin.errorHandler().severe("Error reloading config file: " + e.getMessage());
+            throw new RuntimeException("Error reloading config file: " + e.getMessage());
         }
     }
 

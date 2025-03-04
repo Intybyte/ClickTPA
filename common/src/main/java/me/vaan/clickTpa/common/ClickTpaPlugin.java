@@ -7,6 +7,5 @@ import java.io.File;
 public interface ClickTpaPlugin {
     TeleportRegistry registry = new TeleportRegistry();
 
-    ErrorHandler errorHandler();
     File getDataFolder();
 }

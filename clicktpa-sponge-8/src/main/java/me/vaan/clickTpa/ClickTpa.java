@@ -2,7 +2,6 @@ package me.vaan.clickTpa;
 
 import com.google.inject.Inject;
 import me.vaan.clickTpa.common.ClickTpaPlugin;
-import me.vaan.clickTpa.common.ErrorHandler;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.ConstructPluginEvent;
@@ -27,11 +26,6 @@ public class ClickTpa implements ClickTpaPlugin {
     public void onConstructPlugin(final ConstructPluginEvent event) {
         // Perform any one-time setup
         this.logger.info("Constructing clicktpa-sponge-8");
-    }
-
-    @Override
-    public ErrorHandler errorHandler() {
-        return logger::error;
     }
 
     @Override
