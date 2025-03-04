@@ -3,18 +3,14 @@ package me.vaan.clickTpa;
 import com.google.inject.Inject;
 import me.vaan.clickTpa.common.ClickTpaPlugin;
 import me.vaan.clickTpa.common.file.Config;
-import me.vaan.clickTpa.common.file.Message;
-import net.kyori.adventure.util.Ticks;
+import me.vaan.clickTpa.listener.PlayerListener;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.config.ConfigDir;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.lifecycle.ConstructPluginEvent;
 import org.spongepowered.api.event.lifecycle.LoadedGameEvent;
-import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.plugin.PluginContainer;
 import org.spongepowered.plugin.builtin.jvm.Plugin;
 
@@ -36,20 +32,25 @@ public class ClickTpa implements ClickTpaPlugin {
     private Path configDir;
     private Path configFile = Paths.get(configDir + "/config.yml");
 
-    private final PluginContainer container;
-    private final Logger logger;
+    private static PluginContainer container;
+    private static Logger logger;
 
     @Inject
     ClickTpa(final PluginContainer container, Logger logger) {
-        this.container = container;
-        this.logger = logger;
+        ClickTpa.container = container;
+        ClickTpa.logger = logger;
     }
 
     @Listener
     public void loaded(final LoadedGameEvent event) {
         // Perform any one-time setup
         Config.init(this);
-        this.logger.info("Constructing clicktpa-sponge-8");
+        logger.info("Constructing clicktpa-sponge-8");
+        Sponge.eventManager().registerListeners(container, new PlayerListener());
+    }
+
+    public static Logger logger() {
+        return logger;
     }
 
     @Override
@@ -100,7 +101,7 @@ public class ClickTpa implements ClickTpaPlugin {
             }
             in.close();
         } catch (IOException ioException) {
-            this.logger.error("Could not save {} to {}", outFile.getName(), String.valueOf(outFile), ioException);
+            logger.error("Could not save {} to {}", outFile.getName(), String.valueOf(outFile), ioException);
         }
     }
 
