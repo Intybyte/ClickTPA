@@ -1,0 +1,29 @@
+{
+  "loader": {
+    "name": "java_plain",
+    "version": "1.0"
+  },
+  "license": "GPL-3.0",
+  "plugins": [
+    {
+      "id": "clicktpa-sponge-8",
+      "name": "clicktpa-sponge-8",
+      "version": "${version}",
+      "entrypoint": "me.vaan.clickTpa.ClickTpa",
+      "description": "My plugin description",
+      "branding": {},
+      "links": {
+      },
+      "contributors": [
+      ],
+      "dependencies": [
+        {
+          "id": "spongeapi",
+          "version": "${spongeapi.version}",
+          "load-order": "after",
+          "optional": false
+        }
+      ]
+    }
+  ]
+}

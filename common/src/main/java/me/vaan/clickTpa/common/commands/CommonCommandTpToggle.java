@@ -11,15 +11,17 @@ public interface CommonCommandTpToggle {
         TeleportMode mode = ClickTpaPlugin.registry.modes.get(name);
 
         switch (mode) {
-            case TP_ON -> {
+            case TP_ON:
                 ClickTpaPlugin.registry.modes.put(name, TeleportMode.TP_OFF);
                 Message.sendMessage(user.audience(), "command.tptoggle.toggled_off");
-            }
-            case TP_OFF -> {
+                break;
+            case TP_OFF:
                 ClickTpaPlugin.registry.modes.put(name, TeleportMode.TP_ON);
                 Message.sendMessage(user.audience(), "command.tptoggle.toggled_on");
-            }
-            case TELEPORTING -> Message.sendMessage(user.audience(), "command.tptoggle.toggled_error_teleporting");
+                break;
+            case TELEPORTING:
+                Message.sendMessage(user.audience(), "command.tptoggle.toggled_error_teleporting");
+                break;
         }
     }
 }

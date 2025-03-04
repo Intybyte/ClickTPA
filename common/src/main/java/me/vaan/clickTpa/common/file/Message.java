@@ -1,5 +1,6 @@
 package me.vaan.clickTpa.common.file;
 
+import lombok.var;
 import me.vaan.clickTpa.common.TpaUser;
 import me.vaan.clickTpa.common.enums.TeleportType;
 import net.kyori.adventure.audience.Audience;
@@ -51,10 +52,16 @@ public class Message {
                 .hoverEvent(HoverEvent.showText(denyHoverText))
                 .clickEvent(ClickEvent.runCommand("/tpdeny " + player.name()));
 
-        List<String> tpa = switch (type) {
-            case TPA -> cs.getSList("messages.command.tpa.message");
-            case TPAHERE -> cs.getSList("messages.command.tpahere.message");
-        };
+
+        List<String> tpa = null;
+        switch (type) {
+            case TPA:
+                tpa = cs.getSList("messages.command.tpa.message");
+                break;
+            case TPAHERE:
+                tpa = cs.getSList("messages.command.tpahere.message");
+                break;
+        }
 
         int seconds = cs.getInt("expire-request");
         TagResolver senderResolver = TagResolver.resolver("sender", Tag.inserting(Component.text(player.name())));
@@ -75,16 +82,16 @@ public class Message {
 
     public static void sendMoved(TpaUser player, TpaUser target, TeleportType type) {
         switch (type) {
-            case TPA -> {
+            case TPA:
                 sendTitle(target.audience(), "titles.cancelled_tp");
                 sendMessage(target.audience(), "error.player_moved", target.name());
                 sendMessage(player.audience(), "error.player_moved", target.name());
-            }
-            case TPAHERE -> {
+                break;
+            case TPAHERE:
                 sendTitle(player.audience(), "titles.cancelled_tp");
                 sendMessage(target.audience(), "error.player_moved", player.name());
                 sendMessage(player.audience(), "error.player_moved", player.name());
-            }
+                break;
         }
     }
 

@@ -8,6 +8,8 @@ import me.vaan.clickTpa.common.file.Message;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
+
 public interface CommonCommandTpRequest extends DelayedMessage {
     default void runCommand(@NotNull TpaUser p, @Nullable TpaUser target, TeleportType type) {
         if (target == null) {
@@ -36,7 +38,7 @@ public interface CommonCommandTpRequest extends DelayedMessage {
             return;
         }
 
-        var requests = ClickTpaPlugin.registry.tpaMap.get(target.name());
+        Map<String, TeleportType> requests = ClickTpaPlugin.registry.tpaMap.get(target.name());
         if (requests.containsKey(p.name())) {
             Message.sendMessage(p.audience(), "error.already_requested");
             return;
