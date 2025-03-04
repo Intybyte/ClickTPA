@@ -13,6 +13,7 @@ import me.vaan.clickTpa.common.TpaUser;
 import me.vaan.clickTpa.common.commands.CommonCommandTpaccept;
 import me.vaan.clickTpa.common.enums.TeleportMode;
 import me.vaan.clickTpa.common.enums.TeleportType;
+import me.vaan.clickTpa.common.file.Message;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
@@ -40,11 +41,13 @@ public class CommandTpaccept extends BaseCommand implements CommonCommandTpaccep
             case TPA:
                 ClickTpa.registry.modes.put(target.name(), TeleportMode.TELEPORTING);
                 ClickTpa.registry.listenMovement.add(target.name());
+                Message.sendTitle(targetPlayer, "titles.teleport_started");
                 cdListener.startCountdown(TeleportType.TPA, pPlayer, targetPlayer); // target = person who sent the reques
                 break;
             case TPAHERE:
                 ClickTpa.registry.modes.put(p.name(), TeleportMode.TELEPORTING);
                 ClickTpa.registry.listenMovement.add(p.name());
+                Message.sendTitle(pPlayer, "titles.teleport_started");
                 cdListener.startCountdown(TeleportType.TPAHERE, pPlayer, targetPlayer);
                 break;
         }
