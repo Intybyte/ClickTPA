@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>clicktpa-paper</module>
         <module>clicktpa-sponge-8</module>
         <module>common</module>
     </modules>
