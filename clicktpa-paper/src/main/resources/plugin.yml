@@ -1,0 +1,33 @@
+name: ClickTpa
+version: '1.0.0'
+main: me.vaan.clickTpa.ClickTpa
+api-version: '1.20'
+
+permissions:
+  clicktpa.tpa:
+    description: Allows the player to request teleportation to another player.
+    default: true
+  clicktpa.tpahere:
+    description: Allows the player to request another player to teleport to them.
+    default: true
+  clicktpa.tpacancel:
+    description: Allows the player to cancel a pending teleport request.
+    default: true
+  clicktpa.tpaccept:
+    description: Allows the player to accept a teleport request.
+    default: true
+  clicktpa.tpdeny:
+    description: Allows the player to deny a teleport request.
+    default: true
+  clicktpa.tpo:
+    description: Allows the player to teleport to another player directly (admin command).
+    default: op
+  clicktpa.tpohere:
+    description: Allows the player to teleport another player to them directly (admin command).
+    default: op
+  clicktpa.tptoggle:
+    description: Allows the player to toggle teleport requests on or off.
+    default: true
+  clicktpa.reload:
+    description: Allows the player to reload the plugin configuration.
+    default: op
